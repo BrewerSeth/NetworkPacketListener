@@ -11,6 +11,12 @@ def listen(port):
     # Create a UDP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
+    # Allow reuse of the port (fixes "Address already in use" error)
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+
+    # Enable receiving broadcast packets
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
     # Bind to the specified port
     sock.bind(("0.0.0.0", port))
 

@@ -1,10 +1,10 @@
 # NetworkPacketListener
 
-Simple UDP packet listener that prints incoming packets to the screen.
+Simple UDP packet listener that captures and displays broadcast packets in both UTF-8 and hexadecimal formats.
 
 ## What it does
 
-Listens on UDP and displays incoming packets in both UTF-8 and hexadecimal formats.
+Listens on UDP for broadcast packets (sent to 255.255.255.255) and displays incoming packets with source address and both UTF-8 and hexadecimal representations.
 
 ## How to run
 
