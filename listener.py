@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 """
-Simple UDP packet listener on port 12321
+Simple UDP packet listener
 """
 
 import socket
+import argparse
 
 
-def listen():
+def listen(port):
     # Create a UDP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    # Bind to localhost on port 12321
-    sock.bind(("0.0.0.0", 12321))
+    # Bind to the specified port
+    sock.bind(("0.0.0.0", port))
 
-    print("Listening on UDP port 12321...")
+    print(f"Listening on UDP port {port}...")
     print("Press Ctrl+C to exit\n")
 
     try:
@@ -32,4 +33,13 @@ def listen():
 
 
 if __name__ == "__main__":
-    listen()
+    parser = argparse.ArgumentParser(description="Listen to UDP packets")
+    parser.add_argument(
+        "-p",
+        "--port",
+        type=int,
+        default=12321,
+        help="UDP port to listen on (default: 12321)",
+    )
+    args = parser.parse_args()
+    listen(args.port)
