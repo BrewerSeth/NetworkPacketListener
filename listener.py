@@ -20,7 +20,11 @@ def listen():
         while True:
             # Receive data (up to 1024 bytes)
             data, addr = sock.recvfrom(1024)
-            print(f"[{addr[0]}:{addr[1]}] {data.decode('utf-8', errors='replace')}")
+            utf8_str = data.decode("utf-8", errors="replace")
+            hex_str = data.hex()
+            print(f"[{addr[0]}:{addr[1]}]")
+            print(f"  UTF-8: {utf8_str}")
+            print(f"  HEX:   {hex_str}\n")
     except KeyboardInterrupt:
         print("\nShutting down...")
     finally:
